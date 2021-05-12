@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.adapter.*;
 import com.example.demo.aop.AopBrowser;
+import com.example.demo.decorator.*;
 import com.example.demo.proxy.Browser;
 import com.example.demo.proxy.BrowserProxy;
 import com.example.demo.proxy.IBrowser;
@@ -38,7 +39,15 @@ public class Main {
         //스프링 AOP말고 프록시패턴으로 AOP를 만들 수 있다.
         AtomicLong start = new AtomicLong();
         AtomicLong end = new AtomicLong();
+        /*
+            AtomicLong은 Long 자료형을 갖고 있는 Wrapping클래스 이다.
+            Thread-safe로 구현되어 있어 멀티쓰레드에서 synchronized 없이 사용할 수 있다. 또한 synchronized보다 적은 비용으로 동시성을 보장할 수 있다.
+            ...어 그러면 Long Wrapper클래스가 있는데 +동시성 문제 해결한 랩퍼 클래스인가? AtomicLong
+            어 그런가보다 Atomic 인티져, 불리언 등등도 다 있네!
+            --> AtomicLong... 한번 보기나 하자
+         */
 
+        /*
         IBrowser aopBrowser = new AopBrowser("www.naver.com",
                 ()->{
                     System.out.println("before");
@@ -54,6 +63,20 @@ public class Main {
         System.out.println("loading time : "+end.get());
         aopBrowser.show();
         System.out.println("loading time : "+end.get());
+         */
+
+        ICar audi = new Audi(1000);
+        audi.showPrice();
+        //a3
+        ICar audi3 = new A3(audi, "A3");
+        audi3.showPrice();
+        //a4
+        ICar audi4 = new A4(audi, "A4");
+        audi4.showPrice();
+        //a5
+        ICar audi5 = new A5(audi, "A5");
+        audi5.showPrice();
+        //데코레이터! 기본적인 뼈대는 건드리지 않고, 부가적인 걸 추가하는 것!
     }
 
     // 콘센트
