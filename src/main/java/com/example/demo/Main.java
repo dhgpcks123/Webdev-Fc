@@ -15,11 +15,31 @@ import com.example.demo.proxy.IBrowser;
 import com.example.demo.singleton.AClazz;
 import com.example.demo.singleton.BClazz;
 import com.example.demo.singleton.SocketClient;
+import com.example.demo.strategy.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Main {
     public static void main(String[] args) {
+        //Strategy패턴
+        Encoder encoder = new Encoder();
+        //base64
+        EncodingStrategy base64 = new Base64Strategy();
+        //normal
+        EncodingStrategy normal = new NomalStrategy();
+
+        String message = "hello java";
+        encoder.setEncodingStrategy(base64);
+        String base64Result = encoder.getMessage(message);
+        System.out.println("base64Result = " + base64Result);
+
+        encoder.setEncodingStrategy(normal);
+        String normalResult = encoder.getMessage(message);
+        System.out.println("normalResult = " + normalResult);
+
+        encoder.setEncodingStrategy(new AppendStrategy());
+        String appendResult = encoder.getMessage(message);
+        System.out.println("appendResult = " + appendResult);
         /*
        //파사드 패턴 적용 전!
         Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
@@ -37,11 +57,13 @@ public class Main {
         ftpClient.disConnect();
          */
         //파사드 패턴 적용 후!
+        /*
         SftpClient sftpClient = new SftpClient("www.foo.co.kr",22,"/home/etc","text.tmp");
         sftpClient.connect();
         sftpClient.write();
         sftpClient.read();
         sftpClient.disConnect();
+         */
 
         //옵저버 패턴
         /*
