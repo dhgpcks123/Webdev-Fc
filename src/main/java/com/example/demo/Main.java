@@ -3,6 +3,8 @@ package com.example.demo;
 import com.example.demo.adapter.*;
 import com.example.demo.aop.AopBrowser;
 import com.example.demo.decorator.*;
+import com.example.demo.observer.Button;
+import com.example.demo.observer.IButtonListener;
 import com.example.demo.proxy.Browser;
 import com.example.demo.proxy.BrowserProxy;
 import com.example.demo.proxy.IBrowser;
@@ -14,6 +16,19 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Main {
     public static void main(String[] args) {
+        Button button = new Button("버튼");
+        button.addListener(new IButtonListener() {
+            @Override
+            public void clickEvent(String event) {
+                System.out.println(event);
+            }
+        });
+
+        button.click("메시지 전달 : click1");
+        button.click("메시지 전달 : click2");
+        button.click("메시지 전달 : click3");
+        button.click("메시지 전달 : click4");
+
 
         /*
         Browser browser = new Browser("www.naver.com");
@@ -65,6 +80,7 @@ public class Main {
         System.out.println("loading time : "+end.get());
          */
 
+        /*
         ICar audi = new Audi(1000);
         audi.showPrice();
         //a3
@@ -76,11 +92,7 @@ public class Main {
         //a5
         ICar audi5 = new A5(audi, "A5");
         audi5.showPrice();
+         */
         //데코레이터! 기본적인 뼈대는 건드리지 않고, 부가적인 걸 추가하는 것!
-    }
-
-    // 콘센트
-    public static void connect(Electronic110V electronic110V){
-        electronic110V.powerOn();
     }
 }
