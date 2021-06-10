@@ -1,0 +1,60 @@
+#HTTP Protocol
+
+    -HTTP(Hyper Text Transfer Protocol) WEB 데이터 주고 받는 프로토콜
+
+    -HTML, XML, JSON, Image, Voice, Javascript, PDF 등 다양한 거 다 전송가능
+
+    -HTTP는 TCP 기반으로 한 REST의 특징을 모두 구현하고 있는 Web기반 프로토콜 (;;;;)
+
+    HTTP는 Request, Response형태의 통신 방법!!!!
+
+
+    Client(요청 메시지 작성, 전송, 응답 대기)
+    -> Server(요청 대기, 메시지 수신, 해석, 할당, 결과 생성, 송신)
+    -> Client(메시지 수신, 해석, 데이터 표시 및 처리)
+
+    계속 기다릴 수 없으니까 일정 시간 동안 응답 없거나 Connection 없다?
+    그러면 취소하는 방식을 이루어짐
+
+
+    수강 신청할 때 서버 터지면 404뜨거나 백지 뜨거나... 요청 너무 많이 하니까 응답 못 받은 상태로 끊어진 것!
+
+
+    HTTP 요청 처리
+    GET, POST, PUT, DELETE, HEAD, OPTIONS, TRACE, CONNECT
+
+    멱등성 -> 같은 요청 몇 번을 해도 같은 응답이 온다!
+
+            1. Query Parameter
+            당신이 웹 개발자라면, 가장 간단한 방법인 GET 메소드를 사용해서 데이터를 전송하는 방법을 배웠을 것이다.
+            소셜 서비스를 만든다고 가정해보자. 사용자 목록을 관리해야 하고, 모든 사용자는 사용자 페이지가 있어야 할 것이다.
+
+            그리고 각각의 사용자를 위한 페이지를 만들려면 페이지 마다 식별된 파라미터 경로가 필요한데,
+            다음과 같은 get 파라미터를 사용할 수 있을 것이다.
+
+            /users?id=123  # 아이디가 123인 사용자를 가져온다.
+            그럼 서버로 부터 id 변수를 얻을 수 있다. 이것이 Query String이 동작하는 방식이다.
+            (이 글에서는 서버단에서의 동작까지는 설명하지 않을 것이다.)
+
+            2. Path Variable
+            하지만 데이터를 넘기는 방법 중의 하나로 Path Variable도 사용할 수 있다.
+            Path Variable은 다음과 같이 사용한다.
+
+            /users/123  # 아이디가 123인 사용자를 가져온다.
+            이 경우에, 123 을 서버단에 전달한다. 경로를 변수로서 사용하는 것이다.
+
+            https://ryan-han.com/post/translated/pathvariable_queryparam/
+
+            만약 어떤 resource를 식별하고 싶으면 Path Variable을 사용하고,
+            정렬이나 필터링을 한다면 Query Parameter를 사용하는 것이 Best Practice이다.
+
+
+    응답 상태를 나타내는 코드
+    HTTP Status Code
+    100번대 처리 중..
+    200번대 성공
+    300번대 리다이렉트 -> 새로운 주소 다시 요청
+    400번대 클라이언트 에러 -> 재전송 안 됨
+    500번대 서버에러 -> 재전송하면 해결할 수도
+
+
