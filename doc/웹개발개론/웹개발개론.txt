@@ -11,7 +11,7 @@
     웹을 구성하는 3가지 기본 요소
     URI, HTTP, HTML
 
-    -URL(Uniform Resource Identifier)
+    -URI(Uniform Resource Identifier)
         리소스 식별자
 
         특정 사이트
@@ -24,3 +24,5 @@
     -HTML(Hyper Text Markup Language)
         하이퍼미디어 포맷
         XML을 바탕으로 한 범용 문서 퐷. 브라우저는 이거 읽어서 사용자가 알아보기 쉬운 형태로 만들어줌.
+
+

@@ -1,0 +1,47 @@
+# URI 설계 패턴
+
+    1. URI (Uniform Resource Identifier)
+
+    인터넷 특정 자원 나타내는 주소 값, 해당 값 유일! (물론 응답은 달라질 수 있음)
+
+        요청 : https://www.fastcampus.co.kr/resource/sample/1
+        응답 : fastcampus.pdf, fastcampus.docx
+
+    2. URL(Uniform Resource Locator)
+
+        인터넷 상에서의 자원, 특정 파일이 어디에 위치하는지 식별하는 주소
+
+        요청 : https://www.fastcampus.co.kr/fastcampus.pdf
+
+    URL은 URI의 하위 개념이다.
+
+
+1. URI 설계 원칙 ( RFC-3986 ) 무조건!은 아님
+
+    -/슬래시 구분자는 계층 관계 나타냄
+    -마지막에 / 안 붙임
+    -하이픈은 가독성 높이는데 사용 됨
+    https://fastcampus.co.kr/classes/java/curriculums/web-master
+    -밑줄은 사용하지 않는다 ... 오호 그렇구나;
+    https://fastcampus.co.kr/classes/java/curriculums/web_master(xxx)
+    -URI경로는 소문자로
+    webMaster도 그냥 web-master쓰던지 webmaster쓰던지...
+    -파일 확장자는 URI에 포함x
+    .../web-master.jsp
+    -프로그래밍 언어에 의존적인 확장자 사용x
+    .../web-master.java
+    -구현에 의존적인 경로 사용x
+    .../servlet/...
+    -세션 id URI 포함하지 마세요
+    -Method명 쓰지 마세요
+    -명사에 단수형 보다는 복수형을 사용한다. 컬렉션에 대한 표현은 복수로 사용
+    -컨트롤러 이름으로 동사나 동사구를 쓴다.
+    -경로 부분 중 변화는 부분은 유일한 값으로 대체한다.
+    @PathValiable 2, 10이런거 말고 {lesson-id}, {user-id}로
+    -CRUD기능 URI에 사용하지 않는다.
+    -URI Query Parameter 디자인
+    >결과에 대해서 필터링 ( 챕터, 페이지, 사이즈, sort...)
+    -api에 있어서 서브 도메인.클라이언트 개발자 포탈 서브 도메인은 일관성 있게. 그게 좋지좋아.
+    api.~~ api-~~
+    dev.~~ dev-~~
+    developer.~~ developer-~~
